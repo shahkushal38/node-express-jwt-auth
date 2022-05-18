@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const authRoutes = require('./router/AuthRouter')
 
 // middleware
 app.use(express.static("public"));
@@ -21,6 +22,6 @@ mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
 // routes
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
-
+app.use(authRoutes)
 // app.listen(process.env.PORT || 3000);
 console.log("Server Started at port 3000");
